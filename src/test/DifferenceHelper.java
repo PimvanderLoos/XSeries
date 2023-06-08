@@ -1,7 +1,5 @@
 import com.cryptomorin.xseries.*;
 import org.bukkit.Bukkit;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.potion.PotionEffectType;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -21,27 +19,9 @@ public class DifferenceHelper {
      */
     public static void versionDifference() {
         Path serverFolder = Bukkit.getWorldContainer().toPath();
-        System.out.println("Server container: " + serverFolder.toAbsolutePath());
-
-        Path materials = serverFolder.resolve("XMaterial.txt"),
-                sounds = serverFolder.resolve("XSound.txt"),
-                xPotion = serverFolder.resolve("XPotion.txt"),
-                xEnchant = serverFolder.resolve("XEnchantment.txt"),
-                biomes = serverFolder.resolve("XBiome.txt");
+        Path materials = serverFolder.resolve("XMaterial.txt");
 
         writeDifference(materials, org.bukkit.Material.class, XMaterial.class, mat -> mat.startsWith("LEGACY_"));
-        writeDifference(sounds, org.bukkit.Sound.class, XSound.class, null);
-        writeDifference(biomes, org.bukkit.block.Biome.class, XBiome.class, null);
-        writeDifference(xPotion, getEnumLikeFields(PotionEffectType.class), XPotion.class, null);
-        writeDifference(xEnchant, getEnumLikeFields(Enchantment.class), XEnchantment.class, null);
-    }
-
-    public static List<String> getEnumLikeFields(Class<?> clazz) {
-        return Arrays.stream(clazz.getDeclaredFields())
-                .filter(x -> x.getType() == clazz)
-                .filter(x -> Modifier.isStatic(x.getModifiers()))
-                .map(Field::getName)
-                .collect(Collectors.toList());
     }
 
     /**
