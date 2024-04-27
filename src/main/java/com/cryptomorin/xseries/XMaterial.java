@@ -27,10 +27,10 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.block.data.type.TNT;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SpawnEggMeta;
-import org.bukkit.potion.Potion;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -108,6 +108,8 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     ANVIL,
     APPLE,
     ARCHER_POTTERY_SHERD,
+    ARMADILLO_SCUTE,
+    ARMADILLO_SPAWN_EGG,
     ARMOR_STAND,
     ARMS_UP_POTTERY_SHERD,
     ARROW,
@@ -223,6 +225,8 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     BLUE_TERRACOTTA(11, "STAINED_CLAY"),
     BLUE_WALL_BANNER(4, "WALL_BANNER"),
     BLUE_WOOL(11, "WOOL"),
+    BOGGED_SPAWN_EGG,
+    BOLT_ARMOR_TRIM_SMITHING_TEMPLATE,
     BONE,
     BONE_BLOCK,
     BONE_MEAL(15, "INK_SACK"),
@@ -235,6 +239,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     BRAIN_CORAL_FAN,
     BRAIN_CORAL_WALL_FAN,
     BREAD,
+    BREEZE_ROD,
     BREEZE_SPAWN_EGG,
     BREWER_POTTERY_SHERD,
     BREWING_STAND("BREWING_STAND", "BREWING_STAND_ITEM"),
@@ -613,6 +618,9 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     FLOWERING_AZALEA_LEAVES,
     FLOWER_BANNER_PATTERN,
     FLOWER_POT("FLOWER_POT", "FLOWER_POT_ITEM"),
+    FLOW_ARMOR_TRIM_SMITHING_TEMPLATE,
+    FLOW_BANNER_PATTERN,
+    FLOW_POTTERY_SHERD,
     FOX_SPAWN_EGG,
     FRIEND_POTTERY_SHERD,
     FROGSPAWN,
@@ -699,11 +707,14 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     GRINDSTONE,
     GUARDIAN_SPAWN_EGG(68, "MONSTER_EGG"),
     GUNPOWDER("SULPHUR"),
+    GUSTER_BANNER_PATTERN,
+    GUSTER_POTTERY_SHERD,
     HANGING_ROOTS,
     HAY_BLOCK,
     HEARTBREAK_POTTERY_SHERD,
     HEART_OF_THE_SEA,
     HEART_POTTERY_SHERD,
+    HEAVY_CORE,
     HEAVY_WEIGHTED_PRESSURE_PLATE("IRON_PLATE"),
     HOGLIN_SPAWN_EGG("MONSTER_EGG"),
     HONEYCOMB,
@@ -856,6 +867,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     LLAMA_SPAWN_EGG(103, "MONSTER_EGG"),
     LODESTONE,
     LOOM,
+    MACE,
     MAGENTA_BANNER(13, "STANDING_BANNER", "BANNER"),
     MAGENTA_BED(supports(12) ? 2 : 0, "BED_BLOCK", "BED"),
     MAGENTA_CANDLE,
@@ -1009,6 +1021,8 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     OBSIDIAN,
     OCELOT_SPAWN_EGG(98, "MONSTER_EGG"),
     OCHRE_FROGLIGHT,
+    OMINOUS_BOTTLE,
+    OMINOUS_TRIAL_KEY,
     ORANGE_BANNER(14, "STANDING_BANNER", "BANNER"),
     ORANGE_BED(supports(12) ? 1 : 0, "BED_BLOCK", "BED"),
     ORANGE_CANDLE,
@@ -1285,6 +1299,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     SANDSTONE_STAIRS,
     SANDSTONE_WALL,
     SCAFFOLDING,
+    SCRAPE_POTTERY_SHERD,
     SCULK,
     SCULK_CATALYST,
     SCULK_SENSOR,
@@ -1479,9 +1494,11 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     TUFF_WALL,
     TURTLE_EGG,
     TURTLE_HELMET,
+    TURTLE_SCUTE,
     TURTLE_SPAWN_EGG,
     TWISTING_VINES,
     TWISTING_VINES_PLANT,
+    VAULT,
     VERDANT_FROGLIGHT,
     VEX_ARMOR_TRIM_SMITHING_TEMPLATE,
     VEX_SPAWN_EGG(35, "MONSTER_EGG"),
@@ -1598,12 +1615,14 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     WHITE_WALL_BANNER(15, "WALL_BANNER"),
     WHITE_WOOL("WOOL"),
     WILD_ARMOR_TRIM_SMITHING_TEMPLATE,
+    WIND_CHARGE,
     WITCH_SPAWN_EGG(66, "MONSTER_EGG"),
     WITHER_ROSE,
     WITHER_SKELETON_SKULL(1, "SKULL", "SKULL_ITEM"),
     WITHER_SKELETON_SPAWN_EGG(5, "MONSTER_EGG"),
     WITHER_SKELETON_WALL_SKULL(1, "SKULL", "SKULL_ITEM"),
     WITHER_SPAWN_EGG,
+    WOLF_ARMOR,
     WOLF_SPAWN_EGG(95, "MONSTER_EGG"),
     WOODEN_AXE("WOOD_AXE"),
     WOODEN_HOE("WOOD_HOE"),
@@ -1911,8 +1930,9 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
         // Potions used the items data value to store
         // information about the type of potion in 1.8
         if (!supports(9) && material.endsWith("ION")) {
-            // There's also 16000+ data value technique, but this is more reliable.
-            return Potion.fromItemStack(item).isSplash() ? SPLASH_POTION : POTION;
+//            // There's also 16000+ data value technique, but this is more reliable.
+//            return Potion.fromItemStack(item).isSplash() ? SPLASH_POTION : POTION;
+            throw new UnsupportedOperationException("Unable to match potions!");
         }
 
         // Refer to the enum for info.
