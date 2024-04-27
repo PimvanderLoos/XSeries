@@ -2,7 +2,7 @@
  * The MIT License (MIT)
  *
  * Copyright (c) 2018 Hex_27
- * Copyright (c) 2023 Crypto Morin
+ * Copyright (c) 2024 Crypto Morin
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -65,7 +65,7 @@ import java.util.stream.Collectors;
  * @see Material
  * @see ItemStack
  */
-public enum XMaterial {
+public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Material*/ {
     ACACIA_BOAT("BOAT_ACACIA"),
     ACACIA_BUTTON("WOOD_BUTTON"),
     ACACIA_CHEST_BOAT,
@@ -1662,16 +1662,16 @@ public enum XMaterial {
      * @since 1.0.0
      */
     private static final Cache<String, XMaterial> NAME_CACHE = CacheBuilder.newBuilder()
-            .expireAfterAccess(1, TimeUnit.HOURS)
-            .build();
+                                                                           .expireAfterAccess(1, TimeUnit.HOURS)
+                                                                           .build();
     /**
      * This is used for {@link #isOneOf(Collection)}
      *
      * @since 3.4.0
      */
     private static final Cache<String, Pattern> CACHED_REGEX = CacheBuilder.newBuilder()
-            .expireAfterAccess(3, TimeUnit.HOURS)
-            .build();
+                                                                           .expireAfterAccess(3, TimeUnit.HOURS)
+                                                                           .build();
     /**
      * The maximum data value in the pre-flattening update which belongs to {@link #VILLAGER_SPAWN_EGG}<br>
      * <a href="https://minecraftitemids.com/types/spawn-egg">Spawn Eggs</a>
@@ -1875,7 +1875,7 @@ public enum XMaterial {
     public static XMaterial matchXMaterial(@Nonnull Material material) {
         Objects.requireNonNull(material, "Cannot match null material");
         return matchDefinedXMaterial(material.name(), UNKNOWN_DATA_VALUE)
-                .orElseThrow(() -> new IllegalArgumentException("Unsupported material with no data value: " + material.name()));
+            .orElseThrow(() -> new IllegalArgumentException("Unsupported material with no data value: " + material.name()));
     }
 
     /**
@@ -2198,8 +2198,8 @@ public enum XMaterial {
     @Nonnull
     public String toString() {
         return Arrays.stream(name().split("_"))
-                .map(t -> t.charAt(0) + t.substring(1).toLowerCase())
-                .collect(Collectors.joining(" "));
+                     .map(t -> t.charAt(0) + t.substring(1).toLowerCase())
+                     .collect(Collectors.joining(" "));
     }
 
     /**
