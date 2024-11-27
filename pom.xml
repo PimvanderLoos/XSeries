@@ -98,12 +98,14 @@
             <artifactId>jopt-simple</artifactId>
             <version>5.0.4</version>
             <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-iostreams</artifactId>
             <version>2.22.1</version>
             <scope>compile</scope>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.mojang</groupId>
