@@ -27,18 +27,17 @@ import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.block.data.type.TNT;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SpawnEggMeta;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 
 /**
@@ -61,7 +60,7 @@ import java.util.stream.Collectors;
  * <b>/give @p minecraft:dirt 1 10</b> where 1 is the item amount, and 10 is the data value. The material {@link #DIRT} with a data value of {@code 10} doesn't exist.
  *
  * @author Crypto Morin
- * @version 11.5.0
+ * @version 12.0.0
  * @see Material
  * @see ItemStack
  */
@@ -596,7 +595,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     FERMENTED_SPIDER_EYE,
     FERN(2, "LONG_GRASS"),
     /**
-     * For some reasons filled map items are really special.
+     * For some reason, filled map items are really special.
      * Their data value starts from 0 and every time a player
      * creates a new map that maps data value increases.
      * <a href="https://github.com/CryptoMorin/XSeries/issues/91">GitHub Issue</a>
@@ -1593,6 +1592,51 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     WEATHERED_CUT_COPPER,
     WEATHERED_CUT_COPPER_SLAB,
     WEATHERED_CUT_COPPER_STAIRS,
+    PALE_OAK_PLANKS,
+    PALE_OAK_SAPLING,
+    PALE_OAK_LOG,
+    STRIPPED_PALE_OAK_LOG,
+    STRIPPED_PALE_OAK_WOOD,
+    PALE_OAK_WOOD,
+    PALE_OAK_LEAVES,
+    PALE_MOSS_CARPET,
+    PALE_HANGING_MOSS,
+    PALE_MOSS_BLOCK,
+    PALE_OAK_SLAB,
+    CREAKING_HEART,
+    PALE_OAK_FENCE,
+    PALE_OAK_STAIRS,
+    PALE_OAK_BUTTON,
+    PALE_OAK_PRESSURE_PLATE,
+    PALE_OAK_DOOR,
+    PALE_OAK_TRAPDOOR,
+    PALE_OAK_FENCE_GATE,
+    PALE_OAK_BOAT,
+    PALE_OAK_CHEST_BOAT,
+    PALE_OAK_SIGN,
+    PALE_OAK_HANGING_SIGN,
+    WHITE_BUNDLE,
+    ORANGE_BUNDLE,
+    MAGENTA_BUNDLE,
+    LIGHT_BLUE_BUNDLE,
+    YELLOW_BUNDLE,
+    LIME_BUNDLE,
+    PINK_BUNDLE,
+    GRAY_BUNDLE,
+    LIGHT_GRAY_BUNDLE,
+    CYAN_BUNDLE,
+    PURPLE_BUNDLE,
+    BLUE_BUNDLE,
+    BROWN_BUNDLE,
+    GREEN_BUNDLE,
+    RED_BUNDLE,
+    BLACK_BUNDLE,
+    CREAKING_SPAWN_EGG,
+    FIELD_MASONED_BANNER_PATTERN,
+    BORDURE_INDENTED_BANNER_PATTERN,
+    PALE_OAK_WALL_SIGN,
+    PALE_OAK_WALL_HANGING_SIGN,
+    POTTED_PALE_OAK_SAPLING,
     WEEPING_VINES,
     WEEPING_VINES_PLANT,
     WET_SPONGE(1, "SPONGE"),
@@ -1684,16 +1728,8 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @since 1.0.0
      */
     private static final Cache<String, XMaterial> NAME_CACHE = CacheBuilder.newBuilder()
-                                                                           .expireAfterAccess(1, TimeUnit.HOURS)
-                                                                           .build();
-    /**
-     * This is used for {@link #isOneOf(Collection)}
-     *
-     * @since 3.4.0
-     */
-    private static final Cache<String, Pattern> CACHED_REGEX = CacheBuilder.newBuilder()
-                                                                           .expireAfterAccess(3, TimeUnit.HOURS)
-                                                                           .build();
+            .expireAfterAccess(1, TimeUnit.HOURS)
+            .build();
     /**
      * The maximum data value in the pre-flattening update which belongs to {@link #VILLAGER_SPAWN_EGG}<br>
      * <a href="https://minecraftitemids.com/types/spawn-egg">Spawn Eggs</a>
@@ -1759,7 +1795,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      *
      * @see #getLegacy()
      */
-    @Nonnull
+    @NotNull
     private final String[] legacy;
     /**
      * The cached Bukkit parsed material.
@@ -1770,7 +1806,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     @Nullable
     private final Material material;
 
-    XMaterial(int data, @Nonnull String... legacy) {
+    XMaterial(int data, @NotNull String... legacy) {
         this.data = (byte) data;
         this.legacy = legacy;
 
@@ -1796,8 +1832,8 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @return an optional that can be empty.
      * @since 5.1.0
      */
-    @Nonnull
-    private static Optional<XMaterial> getIfPresent(@Nonnull String name) {
+    @NotNull
+    private static Optional<XMaterial> getIfPresent(@NotNull String name) {
         return Optional.ofNullable(NAMES.get(name));
     }
 
@@ -1820,7 +1856,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @since 1.0.0
      */
     @Nullable
-    private static XMaterial requestOldXMaterial(@Nonnull String name, byte data) {
+    private static XMaterial requestOldXMaterial(@NotNull String name, byte data) {
         String holder = name + data;
         XMaterial cache = NAME_CACHE.getIfPresent(holder);
         if (cache != null) return cache;
@@ -1852,8 +1888,8 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @see #matchXMaterial(String)
      * @since 3.0.0
      */
-    @Nonnull
-    private static Optional<XMaterial> matchXMaterialWithData(@Nonnull String name) {
+    @NotNull
+    private static Optional<XMaterial> matchXMaterialWithData(@NotNull String name) {
         int index = name.indexOf(':');
         if (index != -1) {
             String mat = format(name.substring(0, index));
@@ -1877,8 +1913,8 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @see #matchDefinedXMaterial(String, byte)
      * @since 2.0.0
      */
-    @Nonnull
-    public static Optional<XMaterial> matchXMaterial(@Nonnull String name) {
+    @NotNull
+    public static Optional<XMaterial> matchXMaterial(@NotNull String name) {
         if (name == null || name.isEmpty())
             throw new IllegalArgumentException("Cannot match a material with null or empty material name");
         Optional<XMaterial> oldMatch = matchXMaterialWithData(name);
@@ -1893,11 +1929,11 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @see #matchXMaterial(ItemStack)
      * @since 2.0.0
      */
-    @Nonnull
-    public static XMaterial matchXMaterial(@Nonnull Material material) {
+    @NotNull
+    public static XMaterial matchXMaterial(@NotNull Material material) {
         Objects.requireNonNull(material, "Cannot match null material");
         return matchDefinedXMaterial(material.name(), UNKNOWN_DATA_VALUE)
-            .orElseThrow(() -> new IllegalArgumentException("Unsupported material with no data value: " + material.name()));
+                .orElseThrow(() -> new IllegalArgumentException("Unsupported material with no data value: " + material.name()));
     }
 
     /**
@@ -1910,9 +1946,9 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @see #matchXMaterial(Material)
      * @since 2.0.0
      */
-    @Nonnull
+    @NotNull
     @SuppressWarnings("deprecation")
-    public static XMaterial matchXMaterial(@Nonnull ItemStack item) {
+    public static XMaterial matchXMaterial(@NotNull ItemStack item) {
         Objects.requireNonNull(item, "Cannot match null ItemStack");
         String material = item.getType().name();
 
@@ -1932,10 +1968,10 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
 
         // Potions used the items data value to store
         // information about the type of potion in 1.8
-        if (!supports(9) && material.endsWith("ION")) {
-//            // There's also 16000+ data value technique, but this is more reliable.
-//            return Potion.fromItemStack(item).isSplash() ? SPLASH_POTION : POTION;
-            throw new UnsupportedOperationException("Unable to match potions!");
+        if (!supports(9) && material.equals("POTION")) {
+            // Source: v1.8.8 org.bukkit.potion.Potion.fromDamage(int damage)
+            int damage = item.getDurability();
+            return ((damage & 16384) > 0) ? SPLASH_POTION : POTION;
         }
 
         // Refer to the enum for info.
@@ -1944,9 +1980,14 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
         // If this happens to more materials in the future, I might have to change the system.
         if (supports(13) && !supports(14)) {
             // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/diff/src/main/java/org/bukkit/Material.java?until=67d908a9830c71267ee740f5bddd728ce9c64cc7
-            if (material.equals("CACTUS_GREEN")) return GREEN_DYE;
-            if (material.equals("ROSE_RED")) return RED_DYE;
-            if (material.equals("DANDELION_YELLOW")) return YELLOW_DYE;
+            switch (material) {
+                case "CACTUS_GREEN":
+                    return GREEN_DYE;
+                case "ROSE_RED":
+                    return RED_DYE;
+                case "DANDELION_YELLOW":
+                    return YELLOW_DYE;
+            }
         }
 
         // Check FILLED_MAP enum for more info.
@@ -1959,29 +2000,6 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     }
 
     /**
-     * Gets the XMaterial based on the material's ID (Magic Value) and data value.<br>
-     * You should avoid using this for performance issues.
-     *
-     * @param id   the ID (Magic value) of the material.
-     * @param data the data value of the material.
-     * @return a parsed XMaterial with the same ID and data value.
-     * @see #matchXMaterial(ItemStack)
-     * @since 2.0.0
-     * @deprecated this method loops through all the available materials and matches their ID using {@link #getId()}
-     * which takes a really long time. Plugins should no longer support IDs. If you want, you can make a {@link Map} cache yourself.
-     * This method obviously doesn't work for 1.13+ and will not be supported. This is only here for debugging purposes.
-     */
-    @Nonnull
-    @Deprecated
-    public static Optional<XMaterial> matchXMaterial(int id, byte data) {
-        if (id < 0 || id > MAX_ID || data < 0) return Optional.empty();
-        for (XMaterial materials : VALUES) {
-            if (materials.data == data && materials.getId() == id) return Optional.of(materials);
-        }
-        return Optional.empty();
-    }
-
-    /**
      * The main method that parses the given material name and data value as an XMaterial.
      * All the values passed to this method will not be null or empty and are formatted correctly.
      *
@@ -1989,13 +2007,12 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @param data the data value of the material. Is always 0 or {@link #UNKNOWN_DATA_VALUE} when {@link Data#ISFLAT}
      * @return an XMaterial (with the same data value if specified)
      * @see #matchXMaterial(Material)
-     * @see #matchXMaterial(int, byte)
      * @see #matchXMaterial(ItemStack)
      * @since 3.0.0
      */
     @SuppressWarnings({"DanglingJavadoc", "JavadocBlankLines"})
-    @Nonnull
-    protected static Optional<XMaterial> matchDefinedXMaterial(@Nonnull String name, byte data) {
+    @NotNull
+    protected static Optional<XMaterial> matchDefinedXMaterial(@NotNull String name, byte data) {
         // if (!Boolean.valueOf(Boolean.getBoolean(Boolean.TRUE.toString())).equals(Boolean.FALSE.booleanValue())) return null;
         Boolean duplicated = null;
         boolean isAMap = name.equalsIgnoreCase("MAP");
@@ -2045,8 +2062,8 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @return an enum name.
      * @since 2.0.0
      */
-    @Nonnull
-    protected static String format(@Nonnull String name) {
+    @NotNull
+    protected static String format(@NotNull String name) {
         int len = name.length();
         char[] chs = new char[len];
         int count = 0;
@@ -2076,90 +2093,20 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     }
 
     /**
+     * This is an internal API. Use {@link com.cryptomorin.xseries.reflection.XReflection#supports(int)} instead.
      * Checks if the specified version is the same version or higher than the current server version.
      *
      * @param version the major version to be checked. "1." is ignored. E.g. 1.12 = 12 | 1.9 = 9
      * @return true of the version is equal or higher than the current version.
      * @since 2.0.0
      */
+    @ApiStatus.Internal
     public static boolean supports(int version) {
         return Data.VERSION >= version;
     }
 
     public String[] getLegacy() {
         return this.legacy;
-    }
-
-    /**
-     * Checks if the list of given material names matches the given base material.
-     * Mostly used for configs.
-     * <p>
-     * Supports {@link String#contains} {@code CONTAINS:NAME} and Regular Expression {@code REGEX:PATTERN} formats.
-     * <p>
-     * <b>Example:</b>
-     * <blockquote><pre>
-     *     XMaterial material = {@link #matchXMaterial(ItemStack)};
-     *     if (material.isOneOf(plugin.getConfig().getStringList("disabled-items")) return;
-     * </pre></blockquote>
-     * <br>
-     * <b>{@code CONTAINS} Examples:</b>
-     * <pre>
-     *     {@code "CONTAINS:CHEST" -> CHEST, ENDERCHEST, TRAPPED_CHEST -> true}
-     *     {@code "cOnTaINS:dYe" -> GREEN_DYE, YELLOW_DYE, BLUE_DYE, INK_SACK -> true}
-     * </pre>
-     * <p>
-     * <b>{@code REGEX} Examples</b>
-     * <pre>
-     *     {@code "REGEX:^.+_.+_.+$" -> Every Material with 3 underlines or more: SHULKER_SPAWN_EGG, SILVERFISH_SPAWN_EGG, SKELETON_HORSE_SPAWN_EGG}
-     *     {@code "REGEX:^.{1,3}$" -> Material names that have 3 letters only: BED, MAP, AIR}
-     * </pre>
-     * <p>
-     * The reason that there are tags for {@code CONTAINS} and {@code REGEX} is for the performance.
-     * Although RegEx patterns are cached in this method,
-     * please avoid using the {@code REGEX} tag if you can use the {@code CONTAINS} tag instead.
-     * It'll have a huge impact on performance.
-     * Please avoid using {@code (capturing groups)} there's no use for them in this case.
-     * If you want to use groups, use {@code (?: non-capturing groups)}. It's faster.
-     * <p>
-     * Want to learn RegEx? You can mess around in <a href="https://regexr.com/">RegExr</a> website.
-     *
-     * @param materials the material names to check base material on.
-     * @return true if one of the given material names is similar to the base material.
-     * @since 3.1.1
-     * @deprecated Use XTag.stringMatcher() instead.
-     */
-    @Deprecated
-    public boolean isOneOf(@Nullable Collection<String> materials) {
-        if (materials == null || materials.isEmpty()) return false;
-        String name = this.name();
-
-        for (String comp : materials) {
-            String checker = comp.toUpperCase(Locale.ENGLISH);
-            if (checker.startsWith("CONTAINS:")) {
-                comp = format(checker.substring(9));
-                if (name.contains(comp)) return true;
-                continue;
-            }
-            if (checker.startsWith("REGEX:")) {
-                comp = comp.substring(6);
-                Pattern pattern = CACHED_REGEX.getIfPresent(comp);
-                if (pattern == null) {
-                    try {
-                        pattern = Pattern.compile(comp);
-                        CACHED_REGEX.put(comp, pattern);
-                    } catch (PatternSyntaxException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-                if (pattern != null && pattern.matcher(name).matches()) return true;
-                continue;
-            }
-
-            // Direct Object Equals
-            Optional<XMaterial> xMat = matchXMaterial(comp);
-            if (xMat.isPresent() && xMat.get() == this) return true;
-        }
-        return false;
     }
 
     /**
@@ -2172,9 +2119,9 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @see #parseItem()
      * @since 3.0.0
      */
-    @Nonnull
+    @NotNull
     @SuppressWarnings("deprecation")
-    public ItemStack setType(@Nonnull ItemStack item) {
+    public ItemStack setType(@NotNull ItemStack item) {
         Objects.requireNonNull(item, "Cannot set material for null ItemStack");
         Material material = this.parseMaterial();
         Objects.requireNonNull(material, () -> "Unsupported material: " + this.name());
@@ -2196,7 +2143,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @return true if it's one of the legacy names, otherwise false.
      * @since 2.0.0
      */
-    private boolean anyMatchLegacy(@Nonnull String name) {
+    private boolean anyMatchLegacy(@NotNull String name) {
         for (int i = this.legacy.length - 1; i >= 0; i--) {
             if (name.equals(this.legacy[i])) return true;
         }
@@ -2218,11 +2165,11 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @since 3.0.0
      */
     @Override
-    @Nonnull
+    @NotNull
     public String toString() {
         return Arrays.stream(name().split("_"))
-                     .map(t -> t.charAt(0) + t.substring(1).toLowerCase())
-                     .collect(Collectors.joining(" "));
+                .map(t -> t.charAt(0) + t.substring(1).toLowerCase(Locale.ENGLISH))
+                .collect(Collectors.joining(" "));
     }
 
     /**
@@ -2232,7 +2179,6 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * Spigot added material ID support back in 1.16+
      *
      * @return the ID of the material or <b>-1</b> if it's not a legacy material or the server doesn't support the material.
-     * @see #matchXMaterial(int, byte)
      * @since 2.2.0
      */
     @SuppressWarnings("deprecation")
@@ -2302,7 +2248,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @since 1.0.0
      */
     @SuppressWarnings("deprecation")
-    public boolean isSimilar(@Nonnull ItemStack item) {
+    public boolean isSimilar(@NotNull ItemStack item) {
         Objects.requireNonNull(item, "Cannot compare with null ItemStack");
         if (item.getType() != this.parseMaterial()) return false;
         // Special case for splash potions.
@@ -2352,7 +2298,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * @return true if there's a duplicated material for this material, otherwise false.
      * @since 2.0.0
      */
-    private static boolean isDuplicated(@Nonnull String name) {
+    private static boolean isDuplicated(@NotNull String name) {
         // Don't use matchXMaterial() since this method is being called from matchXMaterial() itself and will cause a StackOverflowError.
         return DUPLICATED.contains(name);
     }
@@ -2402,6 +2348,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      *
      * @since 9.0.0
      */
+    @ApiStatus.Internal
     private static final class Data {
         /**
          * The current version of the server in the form of a major version.
@@ -2412,11 +2359,18 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
         private static final int VERSION;
 
         static { // This needs to be right below VERSION because of initialization order.
-            String version = Bukkit.getVersion();
-            Matcher matcher = Pattern.compile("MC: \\d\\.(\\d+)").matcher(version);
+            // Null-checked for unit tests that don't run a server.
+            // noinspection ConstantValue
+            if (Bukkit.getServer() == null) {
+                System.err.println("Bukkit.getServer() in null. This should not happen when running a plugin normally");
+                VERSION = 21;
+            } else {
+                String version = Bukkit.getVersion();
+                Matcher matcher = Pattern.compile("MC: \\d\\.(\\d+)").matcher(version);
 
-            if (matcher.find()) VERSION = Integer.parseInt(matcher.group(1));
-            else throw new IllegalArgumentException("Failed to parse server version from: " + version);
+                if (matcher.find()) VERSION = Integer.parseInt(matcher.group(1));
+                else throw new IllegalArgumentException("Failed to parse server version from: " + version);
+            }
         }
 
         /**

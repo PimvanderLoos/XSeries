@@ -1,5 +1,5 @@
+jdk:
+  - openjdk17
 before_install:
-  - sdk install java 21-tem
-  - sdk default java 21-tem
-install:
-  - JAVA_HOME=~/.sdkman/candidates/java/current/ mvn --batch-mode install
+  - sdk install maven
+  - sdk default maven

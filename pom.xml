@@ -6,7 +6,7 @@
 
     <groupId>com.github.cryptomorin</groupId>
     <artifactId>XSeries</artifactId>
-    <version>9.8.0</version>
+    <version>11.3.0</version>
 
     <name>XSeries</name>
     <description>A set of utilities for Minecraft plugins</description>
@@ -45,6 +45,7 @@
 
     <distributionManagement>
         <snapshotRepository>
+            <!-- https://repo1.maven.org/maven2/com/github/cryptomorin/XSeries/ -->
             <id>ossrh</id>
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
@@ -58,27 +59,58 @@
         <repository>
             <id>nms-repo</id>
             <url>https://repo.codemc.org/repository/nms/</url>
- <!--            https://repo.codemc.io/service/rest/repository/browse/nms/org/spigotmc/spigot/-->
         </repository>
-<!--        <repository>-->
-<!--            &lt;!&ndash; Sometimes codemc's snapshots don't have the mojang packages. &ndash;&gt;-->
-<!--            <id>minecraft-repo</id>-->
-<!--            <url>https://libraries.minecraft.net/</url>-->
-<!--        </repository>-->
+        <repository>
+            <!-- Sometimes codemc's snapshots don't have the mojang packages. -->
+            <!-- https://libraries.minecraft.net/com/mojang/authlib/VERSION/authlib-VERSION.jar -->
+            <id>minecraft-libraries</id>
+            <name>Minecraft Libraries</name>
+            <url>https://libraries.minecraft.net/</url>
+        </repository>
     </repositories>
 
     <properties>
         <!-- Latest version -->
-        <spigotVersion>1.20.5-R0.1-SNAPSHOT</spigotVersion>
+        <!-- https://repo.codemc.io/service/rest/repository/browse/nms/org/spigotmc/spigot/ -->
+        <!-- 1.8.8-R0.1-SNAPSHOT -->
+        <!-- 1.9.4-R0.1-SNAPSHOT -->
+        <!-- 1.10.2-R0.1-SNAPSHOT -->
+        <!-- 1.11.2-R0.1-SNAPSHOT -->
+        <!-- 1.12.2-R0.1-SNAPSHOT -->
+        <!-- 1.13.2-R0.1-SNAPSHOT -->
+        <!-- 1.14.4-R0.1-SNAPSHOT -->
+        <!-- 1.15.2-R0.1-SNAPSHOT -->
+        <!-- 1.16.5-R0.1-SNAPSHOT -->
+        <!-- 1.17.1-R0.1-SNAPSHOT -->
+        <!-- 1.19.4-R0.1-SNAPSHOT -->
+        <!-- 1.20.6-R0.1-SNAPSHOT -->
+        <!-- 1.21.1-R0.1-SNAPSHOT -->
+        <!-- 1.21.3-R0.1-SNAPSHOT -->
+        <!-- mvn install:install-file "-Dfile=server.jar" -DgroupId=org.spigotmc -DartifactId=spigot -Dversion=1.21.3-R0.1-EXPR -Dpackaging=jar -DgeneratePom=true -->
+        <spigotVersion>1.21.3-R0.1-SNAPSHOT</spigotVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.mojang</groupId>-->
-<!--            <artifactId>authlib</artifactId>-->
-<!--            <version>1.5.25</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>net.sf.jopt-simple</groupId>
+            <artifactId>jopt-simple</artifactId>
+            <version>5.0.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-iostreams</artifactId>
+            <version>2.22.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.mojang</groupId>
+            <artifactId>authlib</artifactId>
+            <version>6.0.55</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
@@ -86,9 +118,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <!-- https://mvnrepository.com/artifact/org.jetbrains/annotations -->
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>26.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.8.2</version>
+            <version>5.11.3</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -98,7 +137,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -111,12 +150,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.7.0</version>
                 <configuration>
                     <!--all,-missing-->
                     <doclint>none</doclint>
                     <release>8</release>
-                    <excludePackageNames>com.cryptomorin.xseries.unused:com.cryptomorin.xseries.particles</excludePackageNames>
+                    <excludePackageNames>com.cryptomorin.xseries.unused:com.cryptomorin.xseries.particles
+                    </excludePackageNames>
                     <!-- Apparently this is needed because it's a bug with maven JavaDoc plugin not being able to find the exe by itself. -->
                     <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
                 </configuration>
@@ -130,9 +170,23 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.8</version>
+                <version>1.7.0</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
@@ -143,8 +197,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.13.0</version>
                 <configuration>
+                    <encoding>UTF-8</encoding>
                     <proc>none</proc>
                     <source>8</source>
                     <target>8</target>
@@ -174,16 +229,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
+                <version>3.2.5</version>
                 <configuration>
                     <!--<failIfNoTests>true</failIfNoTests>-->
+                    <!-- <skipTests>true</skipTests>-->
                     <trimStackTrace>false</trimStackTrace>
                     <workingDirectory>${basedir}/target/tests</workingDirectory>
-<!--                    <dependenciesToScan>-->
-<!--                        <dependency>*:spigot:*:*:1.16.5-R0.1-SNAPSHOT</dependency>-->
-<!--                    </dependenciesToScan>-->
+                    <!--                    <dependenciesToScan>-->
+                    <!--                        <dependency>*:spigot:*:*:1.16.5-R0.1-SNAPSHOT</dependency>-->
+                    <!--                    </dependenciesToScan>-->
                     <includes>
-                        <include>**/DummySpigot.java</include>
+                        <include>**/*.java</include>
                     </includes>
                 </configuration>
             </plugin>
@@ -214,10 +270,10 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.8.1</version>
+                        <version>3.13.0</version>
                         <configuration>
-                            <source>17</source>
-                            <target>17</target>
+                            <source>21</source>
+                            <target>21</target>
                         </configuration>
                         <executions>
                             <execution>
@@ -229,7 +285,7 @@
                                 <configuration>
                                     <skip>false</skip>
                                     <testIncludes>
-                                        <include>*/**DummySpigot.java</include>
+                                        <include>**/*.java</include>
                                     </testIncludes>
                                 </configuration>
                             </execution>
@@ -241,14 +297,28 @@
         <profile>
             <id>latest</id>
             <properties>
+                <nms>21_R0</nms>
+            </properties>
+        </profile>
+        <profile>
+            <id>20</id>
+            <properties>
                 <nms>20_R0</nms>
+                <spigotVersion>1.20.6-R0.1-SNAPSHOT</spigotVersion>
+            </properties>
+        </profile>
+        <profile>
+            <id>19</id>
+            <properties>
+                <nms>19_R1</nms>
+                <spigotVersion>1.19.4-R0.1-SNAPSHOT</spigotVersion>
             </properties>
         </profile>
         <profile>
             <id>18</id>
             <properties>
                 <nms>18_R1</nms>
-                <spigotVersion>1.18.1-R0.1-SNAPSHOT</spigotVersion>
+                <spigotVersion>1.18.2-R0.1-SNAPSHOT</spigotVersion>
             </properties>
         </profile>
         <profile>
