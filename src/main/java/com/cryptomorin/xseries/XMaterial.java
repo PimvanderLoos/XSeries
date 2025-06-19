@@ -65,6 +65,26 @@ import java.util.stream.Collectors;
  * @see ItemStack
  */
 public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Material*/ {
+    BLACK_HARNESS,
+    BLUE_HARNESS,
+    BROWN_HARNESS,
+    CYAN_HARNESS,
+    DRIED_GHAST,
+    GRAY_HARNESS,
+    GREEN_HARNESS,
+    HAPPY_GHAST_SPAWN_EGG,
+    LIGHT_BLUE_HARNESS,
+    LIGHT_GRAY_HARNESS,
+    LIME_HARNESS,
+    MAGENTA_HARNESS,
+    MUSIC_DISC_TEARS,
+    ORANGE_HARNESS,
+    PINK_HARNESS,
+    PURPLE_HARNESS,
+    RED_HARNESS,
+    WHITE_HARNESS,
+    YELLOW_HARNESS,
+
     ACACIA_BOAT("BOAT_ACACIA"),
     ACACIA_BUTTON("WOOD_BUTTON"),
     ACACIA_CHEST_BOAT,
