@@ -981,6 +981,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     MUSIC_DISC_CREATOR,
     MUSIC_DISC_CREATOR_MUSIC_BOX,
     MUSIC_DISC_FAR("RECORD_5"),
+    MUSIC_DISC_LAVA_CHICKEN,
     MUSIC_DISC_MALL("RECORD_6"),
     MUSIC_DISC_MELLOHI("RECORD_7"),
     MUSIC_DISC_OTHERSIDE,
