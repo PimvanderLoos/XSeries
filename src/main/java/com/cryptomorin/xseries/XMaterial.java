@@ -107,6 +107,8 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     COPPER_PICKAXE,
     COPPER_SHOVEL,
     COPPER_SWORD,
+    COPPER_TORCH,
+    COPPER_WALL_TORCH,
     CRIMSON_SHELF,
     DARK_OAK_SHELF,
     EXPOSED_COPPER_BARS,
@@ -1863,7 +1865,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      *
      * @since 8.0.0
      */
-    private static final byte UNKNOWN_DATA_VALUE = -1;
+    protected static final byte UNKNOWN_DATA_VALUE = -1;
     /**
      * The maximum material ID before the pre-flattening update which belongs to {@link #MUSIC_DISC_WAIT}
      *
