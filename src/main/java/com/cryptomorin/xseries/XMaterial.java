@@ -65,6 +65,25 @@ import java.util.stream.Collectors;
  * @see ItemStack
  */
 public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Material*/ {
+    // 1.21.11
+    CAMEL_HUSK_SPAWN_EGG,
+    COPPER_NAUTILUS_ARMOR,
+    COPPER_SPEAR,
+    DIAMOND_NAUTILUS_ARMOR,
+    DIAMOND_SPEAR,
+    GOLDEN_NAUTILUS_ARMOR,
+    GOLDEN_SPEAR,
+    IRON_NAUTILUS_ARMOR,
+    IRON_SPEAR,
+    NAUTILUS_SPAWN_EGG,
+    NETHERITE_HORSE_ARMOR,
+    NETHERITE_NAUTILUS_ARMOR,
+    NETHERITE_SPEAR,
+    PARCHED_SPAWN_EGG,
+    STONE_SPEAR,
+    WOODEN_SPEAR,
+    ZOMBIE_NAUTILUS_SPAWN_EGG,
+
     BLACK_HARNESS,
     BLUE_HARNESS,
     BROWN_HARNESS,

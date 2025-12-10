@@ -30,7 +30,7 @@ class XMaterialTest
         if (!unmatched.isEmpty())
         {
             StringBuilder sb = new StringBuilder("Unmatched Materials:\n");
-            unmatched.stream().sorted().forEach(material -> sb.append(material.name()).append(",\n"));
+            unmatched.stream().map(Enum::name).sorted().forEach(name -> sb.append(name).append(",\n"));
             fail(sb.toString());
         }
     }
