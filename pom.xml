@@ -70,37 +70,15 @@
     </repositories>
 
     <properties>
-        <!-- Latest version -->
-        <!-- https://repo.codemc.io/service/rest/repository/browse/nms/org/spigotmc/spigot/ -->
-        <!-- 1.8.8-R0.1-SNAPSHOT -->
-        <!-- 1.9.4-R0.1-SNAPSHOT -->
-        <!-- 1.10.2-R0.1-SNAPSHOT -->
-        <!-- 1.11.2-R0.1-SNAPSHOT -->
-        <!-- 1.12.2-R0.1-SNAPSHOT -->
-        <!-- 1.13.2-R0.1-SNAPSHOT -->
-        <!-- 1.14.4-R0.1-SNAPSHOT -->
-        <!-- 1.15.2-R0.1-SNAPSHOT -->
-        <!-- 1.16.5-R0.1-SNAPSHOT -->
-        <!-- 1.17.1-R0.1-SNAPSHOT -->
-        <!-- 1.19.4-R0.1-SNAPSHOT -->
-        <!-- 1.20.6-R0.1-SNAPSHOT -->
-        <!-- 1.21.1-R0.1-SNAPSHOT -->
-        <!-- 1.21.3-R0.1-SNAPSHOT -->
-        <!-- mvn install:install-file "-Dfile=server.jar" -DgroupId=org.spigotmc -DartifactId=spigot -Dversion=1.21.3-R0.1-EXPR -Dpackaging=jar -DgeneratePom=true -->
-        <!-- <spigotVersion>1.21.3-R0.1-EXPR</spigotVersion> -->
-        <spigotVersion>1.21.11-R0.1-SNAPSHOT</spigotVersion>
+        <spigotVersion>26.1.1-R0.1-SNAPSHOT</spigotVersion>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <maven.compiler.release>17</maven.compiler.release>
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.mojang</groupId>-->
-<!--            <artifactId>authlib</artifactId>-->
-<!--            <version>6.0.55</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
@@ -108,7 +86,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <!-- https://mvnrepository.com/artifact/org.jetbrains/annotations -->
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
             <version>26.0.1</version>
@@ -285,48 +262,6 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-        <profile>
-            <id>latest</id>
-            <properties>
-                <nms>21_R0</nms>
-            </properties>
-        </profile>
-        <profile>
-            <id>20</id>
-            <properties>
-                <nms>20_R0</nms>
-                <spigotVersion>1.20.6-R0.1-SNAPSHOT</spigotVersion>
-            </properties>
-        </profile>
-        <profile>
-            <id>19</id>
-            <properties>
-                <nms>19_R1</nms>
-                <spigotVersion>1.19.4-R0.1-SNAPSHOT</spigotVersion>
-            </properties>
-        </profile>
-        <profile>
-            <id>18</id>
-            <properties>
-                <nms>18_R1</nms>
-                <spigotVersion>1.18.2-R0.1-SNAPSHOT</spigotVersion>
-            </properties>
-        </profile>
-        <profile>
-            <id>17</id>
-            <properties>
-                <nms>17_R1</nms>
-                <spigotVersion>1.17.1-R0.1-SNAPSHOT</spigotVersion>
-            </properties>
-        </profile>
-        <profile>
-            <!-- Doens't seem to work. I can't find a way to compile with one dependency and test with another -->
-            <id>16</id>
-            <properties>
-                <nms>16_R3</nms>
-                <spigotVersion>1.16.5-R0.1-SNAPSHOT</spigotVersion>
-            </properties>
         </profile>
     </profiles>
 </project>

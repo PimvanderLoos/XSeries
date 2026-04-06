@@ -65,6 +65,10 @@ import java.util.stream.Collectors;
  * @see ItemStack
  */
 public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Material*/ {
+    // 26.1
+    GOLDEN_DANDELION,
+    POTTED_GOLDEN_DANDELION,
+
     // 1.21.11
     CAMEL_HUSK_SPAWN_EGG,
     COPPER_NAUTILUS_ARMOR,
