@@ -304,7 +304,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     /**
      * Version 1.12+ interprets "BED" as BLACK_BED due to enum alphabetic ordering.
      */
-    BLACK_BED(supports(12) ? 15 : 0, "BED_BLOCK", "BED"),
+    BLACK_BED(supports(1, 12) ? 15 : 0, "BED_BLOCK", "BED"),
     BLACK_CANDLE,
     BLACK_CANDLE_CAKE,
     BLACK_CARPET(15, "CARPET"),
@@ -324,7 +324,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     BLAZE_ROD,
     BLAZE_SPAWN_EGG(61, "MONSTER_EGG"),
     BLUE_BANNER(4, "STANDING_BANNER", "BANNER"),
-    BLUE_BED(supports(12) ? 11 : 0, "BED_BLOCK", "BED"),
+    BLUE_BED(supports(1, 12) ? 11 : 0, "BED_BLOCK", "BED"),
     BLUE_CANDLE,
     BLUE_CANDLE_CAKE,
     BLUE_CARPET(11, "CARPET"),
@@ -365,7 +365,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     BRICK_STAIRS,
     BRICK_WALL,
     BROWN_BANNER(3, "STANDING_BANNER", "BANNER"),
-    BROWN_BED(supports(12) ? 12 : 0, "BED_BLOCK", "BED"),
+    BROWN_BED(supports(1, 12) ? 12 : 0, "BED_BLOCK", "BED"),
     BROWN_CANDLE,
     BROWN_CANDLE_CAKE,
     BROWN_CARPET(12, "CARPET"),
@@ -556,7 +556,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     CUT_SANDSTONE,
     CUT_SANDSTONE_SLAB(1, "STEP"),
     CYAN_BANNER(6, "STANDING_BANNER", "BANNER"),
-    CYAN_BED(supports(12) ? 9 : 0, "BED_BLOCK", "BED"),
+    CYAN_BED(supports(1, 12) ? 9 : 0, "BED_BLOCK", "BED"),
     CYAN_CANDLE,
     CYAN_CANDLE_CAKE,
     CYAN_CARPET(9, "CARPET"),
@@ -793,7 +793,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     GRASS_BLOCK("GRASS"),
     GRAVEL,
     GRAY_BANNER(8, "STANDING_BANNER", "BANNER"),
-    GRAY_BED(supports(12) ? 7 : 0, "BED_BLOCK", "BED"),
+    GRAY_BED(supports(1, 12) ? 7 : 0, "BED_BLOCK", "BED"),
     GRAY_CANDLE,
     GRAY_CANDLE_CAKE,
     GRAY_CARPET(7, "CARPET"),
@@ -808,7 +808,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     GRAY_WALL_BANNER(8, "WALL_BANNER"),
     GRAY_WOOL(7, "WOOL"),
     GREEN_BANNER(2, "STANDING_BANNER", "BANNER"),
-    GREEN_BED(supports(12) ? 13 : 0, "BED_BLOCK", "BED"),
+    GREEN_BED(supports(1, 12) ? 13 : 0, "BED_BLOCK", "BED"),
     GREEN_CANDLE,
     GREEN_CANDLE_CAKE,
     GREEN_CARPET(13, "CARPET"),
@@ -934,7 +934,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     LIGHT,
     LIGHTNING_ROD,
     LIGHT_BLUE_BANNER(12, "STANDING_BANNER", "BANNER"),
-    LIGHT_BLUE_BED(supports(12) ? 3 : 0, "BED_BLOCK", "BED"),
+    LIGHT_BLUE_BED(supports(1, 12) ? 3 : 0, "BED_BLOCK", "BED"),
     LIGHT_BLUE_CANDLE,
     LIGHT_BLUE_CANDLE_CAKE,
     LIGHT_BLUE_CARPET(3, "CARPET"),
@@ -949,7 +949,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     LIGHT_BLUE_WALL_BANNER(12, "WALL_BANNER", "STANDING_BANNER", "BANNER"),
     LIGHT_BLUE_WOOL(3, "WOOL"),
     LIGHT_GRAY_BANNER(7, "STANDING_BANNER", "BANNER"),
-    LIGHT_GRAY_BED(supports(12) ? 8 : 0, "BED_BLOCK", "BED"),
+    LIGHT_GRAY_BED(supports(1, 12) ? 8 : 0, "BED_BLOCK", "BED"),
     LIGHT_GRAY_CANDLE,
     LIGHT_GRAY_CANDLE_CAKE,
     LIGHT_GRAY_CARPET(8, "CARPET"),
@@ -972,7 +972,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     LILY_OF_THE_VALLEY,
     LILY_PAD("WATER_LILY"),
     LIME_BANNER(10, "STANDING_BANNER", "BANNER"),
-    LIME_BED(supports(12) ? 5 : 0, "BED_BLOCK", "BED"),
+    LIME_BED(supports(1, 12) ? 5 : 0, "BED_BLOCK", "BED"),
     LIME_CANDLE,
     LIME_CANDLE_CAKE,
     LIME_CARPET(5, "CARPET"),
@@ -992,7 +992,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     LOOM,
     MACE,
     MAGENTA_BANNER(13, "STANDING_BANNER", "BANNER"),
-    MAGENTA_BED(supports(12) ? 2 : 0, "BED_BLOCK", "BED"),
+    MAGENTA_BED(supports(1, 12) ? 2 : 0, "BED_BLOCK", "BED"),
     MAGENTA_CANDLE,
     MAGENTA_CANDLE_CAKE,
     MAGENTA_CARPET(2, "CARPET"),
@@ -1152,7 +1152,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     OMINOUS_TRIAL_KEY,
     OPEN_EYEBLOSSOM,
     ORANGE_BANNER(14, "STANDING_BANNER", "BANNER"),
-    ORANGE_BED(supports(12) ? 1 : 0, "BED_BLOCK", "BED"),
+    ORANGE_BED(supports(1, 12) ? 1 : 0, "BED_BLOCK", "BED"),
     ORANGE_CANDLE,
     ORANGE_CANDLE_CAKE,
     ORANGE_CARPET(1, "CARPET"),
@@ -1196,7 +1196,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     PIG_SPAWN_EGG(90, "MONSTER_EGG"),
     PILLAGER_SPAWN_EGG,
     PINK_BANNER(9, "STANDING_BANNER", "BANNER"),
-    PINK_BED(supports(12) ? 6 : 0, "BED_BLOCK", "BED"),
+    PINK_BED(supports(1, 12) ? 6 : 0, "BED_BLOCK", "BED"),
     PINK_CANDLE,
     PINK_CANDLE_CAKE,
     PINK_CARPET(6, "CARPET"),
@@ -1320,7 +1320,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     PUMPKIN_SEEDS,
     PUMPKIN_STEM,
     PURPLE_BANNER(5, "STANDING_BANNER", "BANNER"),
-    PURPLE_BED(supports(12) ? 10 : 0, "BED_BLOCK", "BED"),
+    PURPLE_BED(supports(1, 12) ? 10 : 0, "BED_BLOCK", "BED"),
     PURPLE_CANDLE,
     PURPLE_CANDLE_CAKE,
     PURPLE_CARPET(10, "CARPET"),
@@ -1381,7 +1381,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     /**
      * Data value 14 or 0
      */
-    RED_BED(supports(12) ? 14 : 0, "BED_BLOCK", "BED"),
+    RED_BED(supports(1, 12) ? 14 : 0, "BED_BLOCK", "BED"),
     RED_CANDLE,
     RED_CANDLE_CAKE,
     RED_CARPET(14, "CARPET"),
@@ -1819,7 +1819,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
     WRITABLE_BOOK("BOOK_AND_QUILL"),
     WRITTEN_BOOK,
     YELLOW_BANNER(11, "STANDING_BANNER", "BANNER"),
-    YELLOW_BED(supports(12) ? 4 : 0, "BED_BLOCK", "BED"),
+    YELLOW_BED(supports(1, 12) ? 4 : 0, "BED_BLOCK", "BED"),
     YELLOW_CANDLE,
     YELLOW_CANDLE_CAKE,
     YELLOW_CARPET(4, "CARPET"),
@@ -1981,10 +1981,10 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * The current version of the server.
      *
      * @return the current server version minor number.
-     * @see #supports(int)
+     * @see #supports(int, int)
      * @since 2.0.0
      */
-    public static int getVersion() {
+    public static Version getVersion() {
         return Data.VERSION;
     }
 
@@ -2098,7 +2098,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
         byte data = (byte) (Data.ISFLAT || material.equals("MAP") || item.getType().getMaxDurability() > 0 ? 0 : item.getDurability());
 
         // Versions 1.9-1.12 didn't really use the items data value.
-        if (supports(9) && !supports(13) && item.hasItemMeta() && material.equals("MONSTER_EGG")) {
+        if (supports(1, 9) && !supports(1, 13) && item.hasItemMeta() && material.equals("MONSTER_EGG")) {
             ItemMeta meta = item.getItemMeta();
             if (meta instanceof SpawnEggMeta) {
                 SpawnEggMeta egg = (SpawnEggMeta) meta;
@@ -2108,7 +2108,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
 
         // Potions used the items data value to store
         // information about the type of potion in 1.8
-        if (!supports(9) && material.equals("POTION")) {
+        if (!supports(1, 9) && material.equals("POTION")) {
             // Source: v1.8.8 org.bukkit.potion.Potion.fromDamage(int damage)
             int damage = item.getDurability();
             return ((damage & 16384) > 0) ? SPLASH_POTION : POTION;
@@ -2118,7 +2118,7 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
         // Currently, these are the only materials with a non-zero data value
         // that has been renamed after the flattening update.
         // If this happens to more materials in the future, I might have to change the system.
-        if (supports(13) && !supports(14)) {
+        if (supports(1, 13) && !supports(1, 14)) {
             // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/diff/src/main/java/org/bukkit/Material.java?until=67d908a9830c71267ee740f5bddd728ce9c64cc7
             switch (material) {
                 case "CACTUS_GREEN":
@@ -2236,13 +2236,14 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
      * This is an internal API. Use {@code com.cryptomorin.xseries.reflection.XReflection#supports(int)} instead.
      * Checks if the specified version is the same version or higher than the current server version.
      *
-     * @param version the major version to be checked. "1." is ignored. E.g. 1.12 = 12 | 1.9 = 9
+     * @param major the major version to be checked. E.g. 1.12 = 1 | 1.9 = 1
+     * @param minor the minor version to be checked. E.g. 1.12 = 12 | 1.9 = 9
      * @return true of the version is equal or higher than the current version.
      * @since 2.0.0
      */
     @ApiStatus.Internal
-    public static boolean supports(int version) {
-        return Data.VERSION >= version;
+    public static boolean supports(int major, int minor) {
+        return Data.VERSION.supports(major, minor);
     }
 
     public String[] getLegacy() {
@@ -2483,6 +2484,23 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
         }
     }
 
+    static Version parseServerVersion(String versionString)
+    {
+        Matcher matcher = Pattern.compile("MC: (\\d+)\\.(\\d+)").matcher(versionString);
+
+        if (matcher.find())
+        {
+            return new Version(
+                Integer.parseInt(matcher.group(1)),
+                Integer.parseInt(matcher.group(2))
+            );
+        }
+        else
+        {
+            throw new IllegalArgumentException("Failed to parse server version from: " + versionString);
+        }
+    }
+
     /**
      * Used for data that need to be accessed during enum initialization.
      *
@@ -2496,20 +2514,16 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
          *
          * @since 1.0.0
          */
-        private static final int VERSION;
+        private static final Version VERSION;
 
         static { // This needs to be right below VERSION because of initialization order.
             // Null-checked for unit tests that don't run a server.
             // noinspection ConstantValue
             if (Bukkit.getServer() == null) {
                 System.err.println("Bukkit.getServer() in null. This should not happen when running a plugin normally");
-                VERSION = 21;
+                VERSION = new Version(26, 1);
             } else {
-                String version = Bukkit.getVersion();
-                Matcher matcher = Pattern.compile("MC: \\d\\.(\\d+)").matcher(version);
-
-                if (matcher.find()) VERSION = Integer.parseInt(matcher.group(1));
-                else throw new IllegalArgumentException("Failed to parse server version from: " + version);
+                VERSION = parseServerVersion(Bukkit.getVersion());
             }
         }
 
@@ -2518,6 +2532,34 @@ public enum XMaterial /* implements com.cryptomorin.xseries.abstractions.Materia
          *
          * @since 3.0.0
          */
-        private static final boolean ISFLAT = supports(13);
+        private static final boolean ISFLAT = supports(13, 0);
+    }
+
+    public static final class Version
+    {
+        private final int major;
+        private final int minor;
+
+        Version(int major, int minor)
+        {
+            this.major = major;
+            this.minor = minor;
+        }
+
+        public int major()
+        {
+            return major;
+        }
+
+        public int minor()
+        {
+            return minor;
+        }
+
+        public boolean supports(int major, int minor)
+        {
+            return this.major >= major
+                && this.minor >= minor;
+        }
     }
 }
