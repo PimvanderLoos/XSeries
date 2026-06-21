@@ -45,7 +45,7 @@
     </repositories>
 
     <properties>
-        <spigotVersion>26.1.1-R0.1-SNAPSHOT</spigotVersion>
+        <spigotVersion>26.2-R0.1-SNAPSHOT</spigotVersion>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
