@@ -16,7 +16,7 @@ class XMaterialTest
     void findUnmatchedMaterials()
     {
         final List<Material> unmatched = new ArrayList<>();
-        for (final var material : Material.values())
+        for (final Material material : Material.values())
         {
             if (material.name().startsWith("LEGACY_"))
                 continue;
